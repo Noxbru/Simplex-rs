@@ -28,6 +28,30 @@ impl<F> fmt::Display for Simplex<F> where F: FnMut(Point) -> f64 {
 
 impl<F> Simplex<F> where F: FnMut(Point) -> f64 {
 
+    pub fn evolve(&mut self) {
+        let mut i_max = self.find_index_of_max();
+        let mut i_min = self.find_index_of_min();
+
+        let mut p_max = self.points[i_max];
+        let mut p_min = self.points[i_min];
+
+        let mut dp = p_max - p_min;
+        let mut dp_mod = (dp.x * dp.x + dp.y * dp.y).sqrt();
+
+        while dp_mod > 1e-2 {
+            self.step();
+
+            i_max = self.find_index_of_max();
+            i_min = self.find_index_of_min();
+
+            p_max = self.points[i_max];
+            p_min = self.points[i_min];
+
+            dp = p_max - p_min;
+            dp_mod = (dp.x * dp.x + dp.y * dp.y).sqrt();
+        }
+    }
+
     pub fn step(&mut self) {
         let i_max = self.find_index_of_max();
         let i_min = self.find_index_of_min();
