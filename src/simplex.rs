@@ -15,9 +15,14 @@ pub struct Simplex<F> {
 
 impl<F> fmt::Display for Simplex<F> where F: FnMut(Point) -> f64 {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        try!(write!(f, "({:-2.2e}, {:+2.2e}) -> {:2.2e}\n", self.points[0].x, self.points[0].y, self.values[0]));
-        try!(write!(f, "({:+2.2e}, {:+2.2e}) -> {:2.2e}\n", self.points[1].x, self.points[1].y, self.values[1]));
-        write!(f, "({:+2.2e}, {:+2.2e}) -> {:2.2e}", self.points[2].x, self.points[2].y, self.values[2])
+        let p0 = self.points[0];
+        let p1 = self.points[1];
+        let p2 = self.points[2];
+        let vals = self.values;
+
+        try!(write!(f, "({:9.3e}, {:9.3e}) -> {:9.3e}\n", p0.x, p0.y, vals[0]));
+        try!(write!(f, "({:9.3e}, {:9.3e}) -> {:9.3e}\n", p1.x, p1.y, vals[1]));
+        write!(f,      "({:9.3e}, {:9.3e}) -> {:9.3e}",   p2.x, p2.y, vals[2])
     }
 }
 
