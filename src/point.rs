@@ -1,25 +1,12 @@
-use std::ops::Add;
 use std::ops::AddAssign;
 use std::ops::Div;
 use std::ops::DivAssign;
 use std::ops::Mul;
-use std::ops::Sub;
 
-#[derive(Clone,Copy)]
+#[derive(Clone,Copy,Add,AddAssign,Sub)]
 pub struct Point {
     pub x: f64,
     pub y: f64
-}
-
-impl Add for Point {
-    type Output = Point;
-
-    fn add(self, other: Point) -> Point {
-        Point {
-            x: self.x + other.x,
-            y: self.y + other.y
-        }
-    }
 }
 
 impl<'a> AddAssign<&'a Point> for Point {
@@ -69,17 +56,6 @@ impl Mul<Point> for f64 {
         Point {
             x: self * other.x,
             y: self * other.y
-        }
-    }
-}
-
-impl Sub for Point {
-    type Output = Point;
-
-    fn sub(self, other: Point) -> Point {
-        Point {
-            x: self.x - other.x,
-            y: self.y - other.y
         }
     }
 }
