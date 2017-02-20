@@ -52,7 +52,7 @@ impl<F> Simplex<F> where F: FnMut(Point) -> f64 {
         }
     }
 
-    pub fn step(&mut self) {
+    fn step(&mut self) {
         let i_max = self.find_index_of_max();
         let i_min = self.find_index_of_min();
 

@@ -27,26 +27,6 @@ fn main() {
     };
 
     println!("{}\n", s);
-    s.step();
-    println!("{}\n", s);
-    s.step();
-    println!("{}\n", s);
-    s.step();
-    println!("{}\n", s);
-    s.step();
-    println!("{}\n", s);
-    s.step();
-    println!("{}\n", s);
-    s.step();
-    println!("{}\n", s);
-    s.step();
-    println!("{}\n", s);
-    s.step();
-    println!("{}\n", s);
-    s.step();
-    println!("{}\n", s);
-    s.step();
-    println!("{}\n", s);
-    s.step();
+    s.evolve();
     println!("{}\n", s);
 }
